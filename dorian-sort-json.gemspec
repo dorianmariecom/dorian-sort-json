@@ -5,7 +5,7 @@ Gem::Specification.new do |s|
   s.description = s.summary + "\n\n" + 'e.g. `sort-json package.json`'
   s.authors = ['Dorian Marié']
   s.email = 'dorian@dorianmarie.fr'
-  s.files = ['lib/dorian/sort-jsonrb']
+  s.files = ['lib/dorian/sort-json.rb']
   s.executables << 'sort-json'
   s.homepage = 'https://github.com/dorianmariefr/sort-json'
   s.license = 'MIT'
