@@ -1,14 +1,16 @@
-require 'json'
+require "json"
 
 module Dorian
   class SortJson
     def self.run
-      if ARGV.size < 1
-        puts 'USAGE: sort-json FILE [FILE...]'
+      if ARGV[0] == "--help" || ARGV[0] == "-h"
+        puts "USAGE: sort-json FILES..."
+        puts "USAGE: ... | sort-json"
         exit
       end
 
-      ARGV.each do |filepath|
+      filepaths = ARGV.size > 0 ? ARGV : STDIN.each_line.to_a.map(&:strip)
+      filepaths.each do |filepath|
         File.write(
           filepath,
           JSON.pretty_generate(sort_json(JSON.parse(File.read(filepath)))) +
