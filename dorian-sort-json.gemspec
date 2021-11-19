@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = "dorian-sort-json"
-  s.version = "0.3.0"
+  s.version = "0.4.0"
   s.summary = "Sorts keys of hashes of JSON files"
   s.description = s.summary + "\n\n" + "e.g. `sort-json package.json`"
   s.authors = ["Dorian Marié"]
@@ -9,4 +9,5 @@ Gem::Specification.new do |s|
   s.executables << "sort-json"
   s.homepage = "https://github.com/dorianmariefr/sort-json"
   s.license = "MIT"
+  s.metadata = { "rubygems_mfa_required" => "true" }
 end
