@@ -9,13 +9,22 @@ module Dorian
         exit
       end
 
-      filepaths = ARGV.size > 0 ? ARGV : STDIN.each_line.to_a.map(&:strip)
-      filepaths.each do |filepath|
-        File.write(
-          filepath,
-          JSON.pretty_generate(sort_json(JSON.parse(File.read(filepath)))) +
-            "\n"
-        )
+      inputs = ARGV
+
+      if inputs.size.zero?
+        inputs = STDIN.each_line.to_a
+
+        if File.exist?(inputs.first.strip)
+          inputs = inputs.map(&:strip)
+        else
+          inputs = [inputs.join]
+        end
+      end
+
+      inputs.each do |input|
+        content = File.exist?(input) ? File.read(input) : input
+        json = JSON.pretty_generate(sort_json(JSON.parse(content))) + "\n"
+        File.exist?(input) ? File.write(input, json) : puts(json)
       end
     end
 

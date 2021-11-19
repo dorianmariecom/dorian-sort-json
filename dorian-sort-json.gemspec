@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = "dorian-sort-json"
-  s.version = "0.2.0"
+  s.version = "0.3.0"
   s.summary = "Sorts keys of hashes of JSON files"
   s.description = s.summary + "\n\n" + "e.g. `sort-json package.json`"
   s.authors = ["Dorian Marié"]
