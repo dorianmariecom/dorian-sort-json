@@ -1,4 +1,4 @@
 #!/usr/bin/env ruby
 
-require 'dorian/sort-json'
+require "dorian/sort-json"
 Dorian::SortJson.run
