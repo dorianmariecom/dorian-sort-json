@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "json"
 
 module Dorian
@@ -11,19 +13,20 @@ module Dorian
 
       inputs = ARGV
 
-      if inputs.size.zero?
-        inputs = STDIN.each_line.to_a
+      if inputs.empty?
+        inputs = $stdin.each_line.to_a
 
-        if File.exist?(inputs.first.strip)
-          inputs = inputs.map(&:strip)
-        else
-          inputs = [inputs.join]
-        end
+        inputs =
+          if File.exist?(inputs.first.strip)
+            inputs.map(&:strip)
+          else
+            [inputs.join]
+          end
       end
 
       inputs.each do |input|
         content = File.exist?(input) ? File.read(input) : input
-        json = JSON.pretty_generate(sort_json(JSON.parse(content))) + "\n"
+        json = "#{JSON.pretty_generate(sort_json(JSON.parse(content)))}\n"
         File.exist?(input) ? File.write(input, json) : puts(json)
       end
     end
