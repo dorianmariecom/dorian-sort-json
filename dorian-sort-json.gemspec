@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.email = "dorian@dorianmarie.fr"
   s.files = ["lib/dorian/sort-json.rb"]
   s.executables << "sort-json"
-  s.homepage = "https://github.com/dorianmariefr/sort-json"
+  s.homepage = "https://github.com/dorianmariecom/sort-json"
   s.license = "MIT"
   s.metadata = { "rubygems_mfa_required" => "true" }
 end
