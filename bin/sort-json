@@ -1,6 +1,8 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
+require "json"
+
 def sort_json(data)
   if data.is_a?(Array)
     data.map { |element| sort_json(element) }
