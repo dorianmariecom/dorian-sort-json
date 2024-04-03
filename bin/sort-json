@@ -28,11 +28,7 @@ if inputs.empty?
   inputs = $stdin.each_line.to_a
 
   inputs =
-    if File.exist?(inputs.first.strip)
-      inputs.map(&:strip)
-    else
-      [inputs.join]
-    end
+    (File.exist?(inputs.first.strip) ? inputs.map(&:strip) : [inputs.join])
 end
 
 inputs.each do |input|
