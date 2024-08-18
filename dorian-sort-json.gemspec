@@ -3,8 +3,8 @@
 Gem::Specification.new do |s|
   s.name = "dorian-sort-json"
   s.version = "0.5.1"
-  s.summary = "Sorts keys of hashes of JSON files"
-  s.description = "#{s.summary}\n\ne.g. `sort-json package.json`"
+  s.summary = "sorts json"
+  s.description = s.summary
   s.authors = ["Dorian Marié"]
   s.email = "dorian@dorianmarie.com"
   s.files = ["bin/sort-json"]
