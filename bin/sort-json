@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
+require "dorian/arguments"
 require "json"
 
 def sort_json(data)
@@ -16,23 +17,27 @@ def sort_json(data)
   end
 end
 
-if ARGV[0] == "--help" || ARGV[0] == "-h"
-  puts "USAGE: sort-json FILES..."
-  puts "USAGE: ... | sort-json"
-  exit
+parsed = Dorian::Arguments.parse(
+  pretty: { alias: :p, default: true },
+  version: { alias: :v },
+  help: { alias: :h }
+)
+
+abort parsed.help if parsed.options.help
+
+if parsed.options.version
+  abort File.read(File.expand_path("../../VERSION", __FILE__))
 end
 
-inputs = ARGV
-
-if inputs.empty?
-  inputs = $stdin.each_line.to_a
-
-  inputs =
-    (File.exist?(inputs.first.strip) ? inputs.map(&:strip) : [inputs.join])
-end
+inputs = parsed.arguments + parsed.files.map { |file| File.read(file) }
+inputs = [$stdin.each_line.to_a.map(&:strip).join("\n")] if inputs.empty?
 
 inputs.each do |input|
-  content = File.exist?(input) ? File.read(input) : input
-  json = "#{JSON.pretty_generate(sort_json(JSON.parse(content)))}\n"
-  File.exist?(input) ? File.write(input, json) : puts(json)
+  output = sort_json(JSON.parse(input))
+
+  if parsed.options.pretty
+    puts JSON.pretty_generate(output)
+  else
+    puts output.to_json
+  end
 end
