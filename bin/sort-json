@@ -17,11 +17,19 @@ def sort_json(data)
   end
 end
 
-parsed = Dorian::Arguments.parse(
-  pretty: { alias: :p, default: true },
-  version: { alias: :v },
-  help: { alias: :h }
-)
+parsed =
+  Dorian::Arguments.parse(
+    pretty: {
+      alias: :p,
+      default: true
+    },
+    version: {
+      alias: :v
+    },
+    help: {
+      alias: :h
+    }
+  )
 
 abort parsed.help if parsed.options.help
 
