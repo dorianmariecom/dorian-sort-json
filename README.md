@@ -1,23 +1,35 @@
 # `dorian-sort-json`
 
-Sorts keys of hashes of JSON files
+Recursively sort JSON object keys.
 
-e.g. `sort-json package.json`
-
-### Install
+## Install
 
 ```bash
 gem install dorian-sort-json
 ```
 
-Or as part of my other gems:
+Also included in the aggregate gem:
 
 ```bash
 gem install dorian
 ```
 
-### Usage
+## Usage
 
 ```bash
-git ls-files | grep "\.json\$" | xargs sort-json
+sort-json [options] [json ...] [file ...]
+```
+
+Run `sort-json -h` for generated option details and `sort-json -v` for the installed version.
+
+## Notes
+
+- Use `--pretty false` for compact JSON output.
+
+## Examples
+
+### Sort inline JSON
+
+```bash
+sort-json '{"b":2,"a":1}'
 ```
