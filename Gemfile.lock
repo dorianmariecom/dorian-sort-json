@@ -2,7 +2,7 @@ PATH
   remote: .
   specs:
     dorian-sort-json (2.0.1)
-      dorian-arguments
+      dorian-arguments (>= 2.0.1, < 3)
 
 GEM
   remote: https://rubygems.org/
